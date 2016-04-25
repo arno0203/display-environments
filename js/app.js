@@ -1,5 +1,15 @@
+$(document).ready(function(){
+  var config = new Object();
+  config.dev = [];
+  config.test = [];
+  config.recette = [];
+  config.prod = [];
+  localStorage.setItem("config", config);
+  console.log(config);
+  var toto = localStorage.getItem("config");
+  console.log(toto);
+});
 $('#click').click(function(){
-
     //chrome.tabs.create({url : 'https://youtube.com'})
     var valeur=localStorage.getItem("enable");  //récupérer la valeur
     var cpt = 0;
