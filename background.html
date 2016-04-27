@@ -1,13 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Background Page</title>
+  <title>Background Page</title>
+  <script>
+    function newTab(fenetre, tab)
+    {
+     console.log('newTab');
+//      if (!fenetre) // premier appel : aucun paramètre existant
+//      {
+//        chrome.windows.getLastFocused(function (fenetre)
+//        {
+//          newTab(fenetre);
+//        });//on demande la fenêtre visible
+//      }
+//      else
+//      {
+//        if (!tab) // deuxième appel : 1 paramètre existant (fenetre)
+//        {
+//          chrome.tabs.getSelected(fenetre.id, function (tab)
+//          {
+//            newTab(fenetre, tab);
+//          });//on demande la fenêtre visible, et on appelle la fonction une deuxième fois
+//        }
+//        else // troisième appel : 2 paramètres existants (fenetre et tab)
+//        {
+//          chrome.tabs.create({url: tab.url});
+//        }
+//      }
+    }
+  </script>
 </head>
 
 <body>
 <h1>Bonjour</h1>
 
-<p>Combien de fois on à utiliser l'extension:<span id="cpt" /></p>
+<p>Combien de fois on a utiliser l'extension:<span id="cpt"/></p>
+<input id="newBtn" type="button" onclick="newTab()" value="Creer un nouvel onglet"/>
 <script scr="/js/jquery-2.2.3.min.js"></script>
 <script scr="/js/background.js"></script>
 </body>
