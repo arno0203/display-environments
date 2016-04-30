@@ -1,22 +1,45 @@
 // background.js
+var config_domain = {
+    dev: {
+        domain: ['dev.dollois.com'],
+        color: ''
+    },
+    test: {
+        domain: ['test.dollois.com'],
+        color: ''
+    },
+    recette: {
+        domain: ['recette.dollois.com'],
+        color: ''
+    },
+    production: {
+        domain: ['www.dollois.com'],
+        color: ''
+    }
+};
+
 
 // Called when the user clicks on the browser action.
-chrome.browserAction.onClicked.addListener(function(tab) {
-  // Send a message to the active tab
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    var activeTab = tabs[0];
-    chrome.tabs.sendMessage(activeTab.id, {"message": "clicked_browser_action"});
-  });
+/*chrome.browserAction.onClicked.addListener(function (tab) {
+ // Send a message to the active tab
+ chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+ var activeTab = tabs[0];
+ chrome.tabs.sendMessage(activeTab.id, {"message": "clicked_browser_action"});
+ });
+ });*/
+chrome.tabs.onActivated.addListener(function(activeInfo) {
+    alert('EEEEE');
+    console.log(activeInfo);
 });
 
 // This block is new!
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-      if( request.message === "open_new_tab" ) {
-        chrome.tabs.create({"url": request.url});
-      }
-    }
-);
+//chrome.runtime.onMessage.addListener(
+//    function (request, sender, sendResponse) {
+//        if (request.message === "open_new_tab") {
+//            chrome.tabs.create({"url": request.url});
+//        }
+//    }
+//);
 //$(document).ready(function ()
 //{
 //  //setInterval(function () {alert('Page d\'arrière plan en marche');},10000);

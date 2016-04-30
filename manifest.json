@@ -8,13 +8,21 @@
       "matches": [
         "<all_urls>"
       ],
-      "js": ["js/jquery-2.2.3.min.js","js/content.js"]
+      "js": [
+        "js/jquery-2.2.3.min.js",
+        "js/content.js"
+      ]
     }
+  ],
+  "permissions": [
+    "tabs"
   ],
   "browser_action": {
     "default_icon": "img/icon.png"
   },
   "background": {
-    "scripts": ["js/background.js"]
+    "scripts": [
+      "js/background.js"
+    ]
   }
 }
