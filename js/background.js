@@ -2,19 +2,19 @@
 var config_domain = {
     dev: {
         domain: ['dev.dollois.com'],
-        color: ''
+        color: '#CED8F6'
     },
     test: {
         domain: ['test.dollois.com'],
-        color: ''
+        color: '#A9F5A9'
     },
     recette: {
         domain: ['recette.dollois.com'],
-        color: ''
+        color: '#F5D0A9'
     },
     production: {
-        domain: ['www.dollois.com'],
-        color: ''
+        domain: ['www.dollois.com','regex101.com'],
+        color: '#FA5858'
     }
 };
 
@@ -27,10 +27,30 @@ var config_domain = {
  chrome.tabs.sendMessage(activeTab.id, {"message": "clicked_browser_action"});
  });
  });*/
-chrome.tabs.onActivated.addListener(function(activeInfo) {
-    alert('EEEEE');
-    console.log(activeInfo);
+chrome.tabs.onActivated.addListener(function (activeInfo) {
+    //alert('EEEEE');
+    var tab = chrome.tabs.get(activeInfo.tabId, function (tab) {
+        var current_url = tab.url;
+        checked_url(current_url);
+        chrome.tabs.sendMessage(activeInfo.tabId, {"message": "checked_url"});
+
+    });
 });
+
+function checked_url (url){
+    jQuery.each(config_domain, function(domain, properties) {
+        var list_domain = properties.domain;
+        list_domain.forEach(function (domain) {
+            var result = url.match(/^(http(s)?:\/\/)?(([a-zA-Z0-9]|\.)*)(\/?)(.*)/);
+            if(result[3] == domain){
+                alert(domain);
+            }
+        });
+
+    });
+}
+
+
 
 // This block is new!
 //chrome.runtime.onMessage.addListener(
