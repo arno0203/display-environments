@@ -1,13 +1,13 @@
 // content.js
-alert(config_domain);
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-        console.log(sender.tab ?
-        "from a content script:" + sender.tab.url :
-            "from the extension");
-        if( request.message === "checked_url" ) {
-            var url = request.url;
-            alert(url);
+        if( request.message === "change_color" ) {
+            alert(request.color);
+            $("body").css("background-color", request.color);
+            $("body").append('<div id="environnemnt" style="background-color:red; height:10px">PMMMMM</div>');
+            $("body").add("div").css("background", request.color);
+
+
         }
         //if( request.message === "clicked_browser_action" ) {
         //    //var firstHref = $("a[href^='http']").eq(0).attr("href");
@@ -20,3 +20,11 @@ chrome.runtime.onMessage.addListener(
         //}
     }
 );
+//
+//chrome.extension.sendMessage({text:"getStuff"},function(reponse){
+//    //This is where the stuff you want from the background page will be
+//    if(reponse.type == "test")
+//        alert("Test received");
+//});
+
+
